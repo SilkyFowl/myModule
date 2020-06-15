@@ -1,1 +1,1 @@
-# PowershellBinaryModuleVSCodeSample
+# myModule
