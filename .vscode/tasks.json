@@ -1,0 +1,35 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "type": "shell",
+    "options": {
+        "shell": {
+            "executable": "C:\\Users\\terit\\scoop\\apps\\pwsh-beta\\current\\pwsh.exe"
+        }
+    },
+    "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+    },
+    "problemMatcher": [],
+    "inputs": [
+        {
+            "id": "sampleInput",
+            "type": "promptString",
+            "description": "インプットのサンプル",
+        }
+    ],
+    "tasks": [
+        {
+            "label": "build",
+            "command": [
+                "-file Tasks.ps1 Build"
+            ],
+        },
+    ],
+}
