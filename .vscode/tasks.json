@@ -28,7 +28,9 @@
         {
             "label": "build",
             "command": [
-                "-file Tasks.ps1 Build"
+                "-file",
+                "Tasks.ps1",
+                "Build"
             ],
         },
     ],
