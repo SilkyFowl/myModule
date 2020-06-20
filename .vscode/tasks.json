@@ -5,7 +5,7 @@
     "type": "shell",
     "options": {
         "shell": {
-            "executable": "C:\\Users\\terit\\scoop\\apps\\pwsh-beta\\current\\pwsh.exe"
+            "executable": "pwsh.exe"
         }
     },
     "presentation": {
