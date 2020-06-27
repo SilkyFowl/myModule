@@ -4,14 +4,16 @@ Push-Location $PSScriptRoot
 # バイナリモジュールをロックする可能性があるPowershellプロセスを終了
 # VScodeで以下の設定がされていることを前提にした処理
 # "powershell.debugging.createTemporaryIntegratedConsole": true
-$cimSplat = @{
-    Class    = 'Win32_Process'
-    Filter   = "Name = 'pwsh.exe'"
-    Property = 'ProcessId', 'CommandLine'
-}
-(Get-CimInstance @cimSplat).where{
-    ($_.ProcessId -ne $PID) -and ($_.CommandLine -match 'DebugSession-') }.foreach{
-    Stop-Process -Id $_.ProcessId
+if ($IsWindows) {
+    $cimSplat = @{
+        Class    = 'Win32_Process'
+        Filter   = "Name = 'pwsh.exe'"
+        Property = 'ProcessId', 'CommandLine'
+    }
+    (Get-CimInstance @cimSplat).where{
+        ($_.ProcessId -ne $PID) -and ($_.CommandLine -match 'DebugSession-') }.foreach{
+        Stop-Process -Id $_.ProcessId
+    }
 }
 
 # バイナリモジュールをビルド
