@@ -68,6 +68,13 @@ RUN apt-get update \
         && apt-get update \
         && apt-get install -y azure-cli; \
     fi \
+
+    #
+    # Pwsh Setup 
+    && mkdir -p /home/vscode/.config/powershell \
+    && echo "Set-PSReadLineOption -EditMode Windows" > /home/vscode/.config/powershell/profile.ps1 \
+    && echo "Set-PSReadLineKeyHandler -chord 'Alt+q' -Func MenuComplete " >> /home/vscode/.config/powershell/profile.ps1 \
+
     #
     # Clean up
     && apt-get autoremove -y \
