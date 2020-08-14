@@ -2,6 +2,13 @@ Param(
     $Taskname
 )
 
+# 必要なモジュールをインストール
+@(
+    'Pester'
+).where{ $null -eq (Get-Module -ListAvailable $_) }.foreach{
+    Install-Module $_  -Force -AcceptLicense
+} 
+
 # 同じフォルダにあるビルドスクリプトを実行
 function Build-Project {
     & $PSScriptRoot/build.ps1
@@ -10,8 +17,8 @@ function Build-Project {
 # 全テストを実行
 function Test-Project {
     $param = @{
-        Path= ${(Resolve-Path $PSScriptRoot/Tests/*).Path}
-        Output= 'Detailed'
+        Path   = ${(Resolve-Path $PSScriptRoot/Tests/*).Path}
+        Output = 'Detailed'
     }
     Invoke-Pester @param
 }
@@ -19,9 +26,9 @@ function Test-Project {
 # デバッグに使うテストコードのみを実行
 function Debug-Project {
     $param = @{
-        Path= ${(Resolve-Path $PSScriptRoot/Tests/*).Path}
-        Output= 'Detailed'
-        Tag='Debug'
+        Path   = ${(Resolve-Path $PSScriptRoot/Tests/*).Path}
+        Output = 'Detailed'
+        Tag    = 'Debug'
     }
     Invoke-Pester @param
 }
